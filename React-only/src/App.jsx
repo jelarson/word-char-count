@@ -1,20 +1,40 @@
-import React, { useState } from 'react'
-import logo from './logo.svg'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 import { css } from '@emotion/core'
 
 function App() {
+  const [inputTextValue, setInputTextValue] = useState('')
+  const [inputText, setInputText] = useState('')
+  const [checked, setChecked] = useState(false)
+
+  useEffect(() => {
+    console.log(inputTextValue)
+    if (!checked) {
+      setInputTextValue(inputTextValue.toUpperCase())
+    }
+    // if case sensitive checked
+    // inputTextValue.split(' ').join('').split('')
+    setInputText('')
+  }, [inputTextValue])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React STUFF!
-        </a>
-      </header>
+      <div>Enter Word</div>
+      <form>
+        <input type="text" onChange={(e) => setInputText(e.currentTarget.value)} value={inputText} />
+        <input type="checkbox" onChange={() => setChecked(!checked)} id="caseSens" name="caseSens" value="CaseSens" />
+        <label htmlFor="caseSens"> Make Case Sensitive?</label>
+        <br />
+      </form>
+
+      <button
+        type="button"
+        onClick={() => {
+          setInputTextValue(inputText)
+        }}
+      >
+        Submit
+      </button>
     </div>
   )
 }
