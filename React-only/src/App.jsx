@@ -2,6 +2,40 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import { css } from '@emotion/core'
 
+const pageTitleCss = css`
+  font-size: 2em;
+  margin-top: 8px;
+  margin-bottom: 8px;
+`
+
+const formCss = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const textInputCss = css`
+  width: 34%;
+  font-size: 1.3em;
+  padding: 8px;
+  border-radius: 15px;
+  outline: none;
+`
+
+const checkboxWrapperCss = css`
+  display: flex;
+  flex-direction: row;
+  margin-top: 12px;
+`
+
+const buttonCss = css`
+  font-size: 1.5em;
+  background-color: grey;
+  color: white;
+  border-radius: 15px;
+  outline: none;
+`
+
 const answerWrapperCss = css`
   display: flex;
   flex-direction: row;
@@ -16,6 +50,15 @@ const answerColumnCss = css`
   flex-direction: column;
   margin-left: 15px;
   margin-right: 15px;
+`
+
+const titleCss = css`
+  border-bottom: 2px solid black;
+  font-size: 1.3em;
+`
+
+const returnedObjCss = css`
+  font-size: 1.3em;
 `
 
 function App() {
@@ -49,15 +92,18 @@ function App() {
 
   return (
     <div className="App">
-      <div>Enter Word</div>
-      <form>
-        <input type="text" onChange={(e) => setInputText(e.currentTarget.value)} value={inputText} />
-        <input type="checkbox" onChange={() => setChecked(!checked)} id="caseSens" name="caseSens" value="CaseSens" />
-        <label htmlFor="caseSens"> Make Case Sensitive?</label>
+      <div css={pageTitleCss}>Enter Word</div>
+      <form css={formCss}>
+        <input css={textInputCss} type="text" onChange={(e) => setInputText(e.currentTarget.value)} value={inputText} />
+        <div css={checkboxWrapperCss}>
+          <div>Make Case Sensitive?</div>
+          <input type="checkbox" onChange={() => setChecked(!checked)} id="caseSens" name="caseSens" value="CaseSens" />
+        </div>
         <br />
       </form>
 
       <button
+        css={buttonCss}
         type="button"
         onClick={() => {
           setInputTextValue(inputText)
@@ -67,15 +113,15 @@ function App() {
       </button>
       <div css={answerWrapperCss}>
         <div css={answerColumnCss}>
-          <div>Letter</div>
+          <div css={titleCss}>Letter</div>
           {Object.keys(countObject).map((key) => {
-            return <div>{key}</div>
+            return <div css={returnedObjCss}>{key}</div>
           })}
         </div>
         <div css={answerColumnCss}>
-          <div>Count</div>
+          <div css={titleCss}>Count</div>
           {Object.values(countObject).map((value) => {
-            return <div>{value}</div>
+            return <div css={returnedObjCss}>{value}</div>
           })}
         </div>
       </div>
