@@ -24,10 +24,13 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
   // }
 
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data=json_decode(file_get_contents('php://input'),1);
-    echo json_encode($data);
+    // $data = $_POST['payload'];
+    $data = json_decode(file_get_contents("php://input"), true);
+    // $data=json_decode(file_get_contents('php://input'),1);
+    // echo json_encode($data);
+    echo $data['payload'];
   };
   
-  echo json_encode($_SERVER);
+  // echo json_encode($_SERVER);
 
 ?>

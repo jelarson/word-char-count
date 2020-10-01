@@ -70,17 +70,32 @@ function App() {
   const [countObject, setCountObject] = useState({})
   // const [arrayPayload, setArrayPayload] = useState([])
 
+  // function handleSubmit() {
+  //   setInputTextValue(inputText)
+  //   console.log(inputTextValue)
+  //   setInputText('')
+  //   if (!checked) {
+  //     setInputTextValue(inputTextValue.toUpperCase())
+  //   }
+
+  //   if (inputTextValue.length > 0) {
+  //     Axios.post('http://localhost:8081/letter-count.php', {
+  //       payload: inputTextValue.split(' ').join(''),
+  //     }).then((data) => console.log(data))
+  //   }
+  // }
+
   useEffect(() => {
     console.log(inputTextValue)
     if (!checked) {
       setInputTextValue(inputTextValue.toUpperCase())
     }
 
-    Axios
-      // axios
-      // .post('http://localhost:8081', { payload: inputTextValue.split(' ').join('').split('') })
-      .post('http://localhost:8081', { payload: 'hello' })
-      .then((data) => console.log(data))
+    if (inputTextValue.length > 0) {
+      Axios.post('http://localhost:8081/letter-count.php', {
+        payload: inputTextValue.split(' ').join(''),
+      }).then((data) => console.log(data.data))
+    }
 
     // const obj = {}
     // inputTextValue
@@ -96,7 +111,6 @@ function App() {
     //   })
     // setCountObject(obj)
 
-    // if case sensitive checked
     setInputText('')
   }, [inputTextValue])
 
@@ -118,6 +132,9 @@ function App() {
         onClick={() => {
           setInputTextValue(inputText)
         }}
+        // onClick={() => {
+        //   handleSubmit()
+        // }}
       >
         Submit
       </button>
