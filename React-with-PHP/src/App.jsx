@@ -94,7 +94,7 @@ function App() {
     if (inputTextValue.length > 0) {
       Axios.post('http://localhost:8081/letter-count.php', {
         payload: inputTextValue.split(' ').join(''),
-      }).then((data) => console.log(data.data))
+      }).then((data) => setCountObject(data.data))
     }
 
     // const obj = {}
