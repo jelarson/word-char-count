@@ -31,10 +31,18 @@ const checkboxWrapperCss = css`
 
 const buttonCss = css`
   font-size: 1.5em;
-  background-color: grey;
+  background-color: #55a630;
   color: white;
   border-radius: 15px;
   outline: none;
+  border: 2px black solid;
+  cursor: pointer;
+  padding-left: 12px;
+  padding-right: 12px;
+
+  &:hover {
+    background-color: #2b9348;
+  }
 `
 
 const answerWrapperCss = css`
@@ -43,7 +51,7 @@ const answerWrapperCss = css`
   width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding-top: 8px;
 `
 
 const answerColumnCss = css`
