@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import axios from 'axios'
 import './App.css'
 import { css } from '@emotion/core'
 import Axios from 'axios'
@@ -68,48 +67,13 @@ function App() {
   const [inputText, setInputText] = useState('')
   const [checked, setChecked] = useState(false)
   const [countObject, setCountObject] = useState({})
-  // const [arrayPayload, setArrayPayload] = useState([])
-
-  // function handleSubmit() {
-  //   setInputTextValue(inputText)
-  //   console.log(inputTextValue)
-  //   setInputText('')
-  //   if (!checked) {
-  //     setInputTextValue(inputTextValue.toUpperCase())
-  //   }
-
-  //   if (inputTextValue.length > 0) {
-  //     Axios.post('http://localhost:8081/letter-count.php', {
-  //       payload: inputTextValue.split(' ').join(''),
-  //     }).then((data) => console.log(data))
-  //   }
-  // }
 
   useEffect(() => {
-    console.log(inputTextValue)
-    if (!checked) {
-      setInputTextValue(inputTextValue.toUpperCase())
-    }
-
     if (inputTextValue.length > 0) {
       Axios.post('http://localhost:8081/letter-count.php', {
         payload: inputTextValue.split(' ').join(''),
       }).then((data) => setCountObject(data.data))
     }
-
-    // const obj = {}
-    // inputTextValue
-    //   .split(' ')
-    //   .join('')
-    //   .split('')
-    //   .forEach((letter) => {
-    //     if (obj.hasOwnProperty(letter)) {
-    //       obj[letter]++
-    //     } else {
-    //       obj[letter] = 1
-    //     }
-    //   })
-    // setCountObject(obj)
 
     setInputText('')
   }, [inputTextValue])
@@ -130,11 +94,12 @@ function App() {
         css={buttonCss}
         type="button"
         onClick={() => {
-          setInputTextValue(inputText)
+          if (checked) {
+            setInputTextValue(inputText)
+          } else {
+            setInputTextValue(inputText.toUpperCase())
+          }
         }}
-        // onClick={() => {
-        //   handleSubmit()
-        // }}
       >
         Submit
       </button>
